@@ -9,26 +9,26 @@ const Library = [
         avaliable: true,
 
     },
-    //     {
-    //     name:'The Plague',
-    //     id: 2,
-    //     author: 'Camus',
-    //     genre: 'fiction',
-    //     rating: 8,
-    //     year: 1947,
-    //     avaliable: true,
+        {
+        name:'The Plague',
+        id: 2,
+        author: 'Camus',
+        genre: 'fiction',
+        rating: 8,
+        year: 1947,
+        avaliable: true,
         
-    // },
-    //     {
-    //     name:'As I lay Dying',
-    //     id: 3,
-    //     author: 'William Faulkner',
-    //     genre: 'fiction',
-    //     rating: 10,
-    //     year: 1930,
-    //     avaliable: true,
+    },
+        {
+        name:'As I lay Dying',
+        id: 3,
+        author: 'William Faulkner',
+        genre: 'fiction',
+        rating: 10,
+        year: 1930,
+        avaliable: true,
         
-    // },
+    },
         {
         name:'Iliad',
         id: 4,

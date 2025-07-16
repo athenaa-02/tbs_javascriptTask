@@ -44,11 +44,11 @@ function addBook(book) {
   Library.push({ ...book, avaliable: true });
 //   console.log(Library);
 }
-
+const borrowingDate = borrowDate()
 //borrow book function
-function borrowBook(userId, bookName) {
-  const activeUser = users.find((u) => u.userId === userId);
-  const chosenBook = Library.find((b) => b.name === bookName);
+function borrowBook(userName, bookid) {
+  const activeUser = users.find((u) => u.name === userName);
+  const chosenBook = Library.find((b) => b.id === bookid);
 
   if (!activeUser) {
     console.log("user not found");
@@ -59,25 +59,35 @@ function borrowBook(userId, bookName) {
     return;
   }
   if (chosenBook.avaliable) {
-    let borrowD = borrowDate();
-    console.log("aris", chosenBook.avaliable);
-    console.log("borrow date is:", borrowD);
-    console.log("user must return book:", returnDate(borrowD));
+    console.log(chosenBook.name, "book borrow date is:", borrowingDate);
+    console.log("user must return book:", returnDate(borrowingDate));
 
     chosenBook.avaliable = false;
-  } else {
+    activeUser.currentlyBorrowed.push({name: chosenBook.name, id: chosenBook.id, 'borrow date': borrowingDate, 'return date': returnDate(borrowingDate) })
+//   console.log(activeUser)
+} else {
     console.log("book is unavaliable");
   }
 }
-const borrowingDate = borrowDate()
+
 
 
 // book returning function
-function returnBook(userName, bookId, borrowDay){
+function returnBook(userName, bookId){
 const activeUser = users.find(user => user.name === userName)
-const booK = Library.find(b => b.id === bookId)
+const bookUniq = Library.find(b => b.id === bookId)
 
-console.log(borrowingDate)
+const boolean = activeUser.currentlyBorrowed.some(book => book.id === bookUniq.id)
+
+console.log(boolean)
+if(activeUser.currentlyBorrowed.length === 0){
+    console.log("user does't have any books to return")
+    
+}else if(!boolean){
+console.log("user doesn't have this book")
+}else if(boolean){
+    console.log('yes')
+}
 }
 
 
@@ -89,7 +99,6 @@ addBook({
   rating: 10,
   year: 1813,
 });
-borrowBook(2, "Pride and Prejudice");
-// borrowBook(3, 'Pride and Prejudice')
+borrowBook('ahmad', 3);
 
-returnBook('natia', 2, borrowingDate)
+returnBook('ahmad', 3)
